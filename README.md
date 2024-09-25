@@ -21,6 +21,6 @@ This project parses AWS VPC flow log data and maps each log entry to a tag based
    ```bash
    git clone https://github.com/tej-kiran-yabaku-manohar/flow-log-mapping-tool.git
 2. Or download the zip file, and save it in the Desktop location.
-3. Run the below script using Python 3: ```bash
-       python3 program.py ```
-5. The output will be saved as output.txt in the project folder on the Desktop.
+3. Run the below script using Python 3: ```
+   python3 program.py ```
+6. The output will be saved as output.txt in the project folder on the Desktop.

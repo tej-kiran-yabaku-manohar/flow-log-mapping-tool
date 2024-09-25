@@ -5,7 +5,7 @@ from collections import defaultdict
 def get_programFiles_path():
     home = Path.home()
     desktop_path = home / 'Desktop'
-    project_path = desktop_path / 'Illumio'
+    project_path = desktop_path / 'flow-log-mapping-tool-main'
     return project_path
 
 

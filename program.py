@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import defaultdict
 
 def get_programFiles_path():
-    home = Path.home()
+    home = Path.home()  # get the user's home directory
     desktop_path = home / 'Desktop'
     project_path = desktop_path / 'flow-log-mapping-tool-main'
     return project_path
@@ -36,17 +36,17 @@ def map_logs_to_tags(flow_logs, lookup_dict):
     tag_counts = {}
     port_protocol_counts = defaultdict(int)
     untagged_count = 0
-    protocols = {'6': 'tcp', '17': 'udp', '1': 'icmp'}
+    protocols = {'6': 'tcp', '17': 'udp', '1': 'icmp'}    # Assigned Internet Protocol Numbers given by iana
     
     for dst_port, protocol in flow_logs:
         key = (dst_port, protocols.get(protocol))
         if key in lookup_dict:
             tag = lookup_dict[key]
-            tag_counts[tag] = tag_counts.get(tag, 0) + 1
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1    # Count of matches for each tag
         else:
             untagged_count += 1
         
-        port_protocol_counts[key] += 1
+        port_protocol_counts[key] += 1    # Count of matches for each port/protocol combination 
     
     return tag_counts, port_protocol_counts, untagged_count
 
@@ -71,8 +71,8 @@ def main():
     lookup_dict = parse_lookup_table(projectFolder_path / 'lookup_table.csv')
    
 
-    print(flow_logs)
-    print(lookup_dict)
+    print(f"Port/Protocol decimal combination from flow logs data: {flow_logs}")
+    print(f"Lookup table  for mapping (dstport, protocol) to tag: {lookup_dict}")
     
     tag_counts, port_protocol_counts, untagged_count = map_logs_to_tags(flow_logs, lookup_dict)
     
